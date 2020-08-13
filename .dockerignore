@@ -1,0 +1,5 @@
+.git/
+venv/
+LICENSE
+README.md
+db.sqlite3
