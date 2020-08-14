@@ -1,18 +1,23 @@
 version: "3"
 
 services:
+  redis:
+    image: redis:6
   db:
-    image: postgres
+    image: postgres:12
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   web:
     build: .
-    command: python3 /app/korero/manage.py runserver 0:8000
+    command: >
+      bash -c "python3 korero/manage.py migrate
+      && python3 /app/korero/manage.py runserver 0:8000"
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     depends_on:
       - db
+      - redis
