@@ -9,10 +9,18 @@ class UserSerializer(serializers.ModelSerializer):
         validators=[UniqueValidator(queryset=get_user_model().objects.all())]
     )
     email = serializers.EmailField(write_only=True)
+    is_staff = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email', 'password']
+        fields = [
+            'username',
+            'email',
+            'password',
+            'is_staff',
+            'first_name',
+            'last_name'
+        ]
     
     def create(self, validated_data):
         user = get_user_model()(**validated_data)
