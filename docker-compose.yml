@@ -18,6 +18,8 @@ services:
       - .:/app
     ports:
       - "8000:8000"
+    environment:
+      - DEBUG=0
     depends_on:
       - db
       - redis
