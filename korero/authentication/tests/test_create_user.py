@@ -59,3 +59,16 @@ class UserCreateTests(APITestCase):
         # body = json.loads(response.getvalue())
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    
+    def test_create_user_with_too_long_username(self):
+        url = reverse('authentication:create')
+        data = {
+            'username': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+            'email': 'kicia@miau.com',
+            'password': 'miauMIAU123'
+        }
+
+        response = self.client.post(url, data, 'json')
+        # body = json.loads(response.getvalue())
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
