@@ -8,4 +8,7 @@ WORKDIR /app
 ADD requirements.txt ./
 RUN pip install -r requirements.txt
 
+RUN useradd user
+USER user
+
 ADD ./korero .
