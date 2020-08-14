@@ -5,4 +5,4 @@ from django.contrib.auth import get_user_model
 class UserSerializer(ModelSerializer):
     class Meta:
         model = get_user_model()
-        exclude = ['password', 'email']
+        exclude = ['password', 'email', 'is_superuser', 'user_permissions']
