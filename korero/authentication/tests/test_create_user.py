@@ -72,3 +72,21 @@ class UserCreateTests(APITestCase):
         # body = json.loads(response.getvalue())
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_create_two_users_with_same_username(self):
+        url = reverse('authentication:create')
+        data = {
+            'username': 'kicia',
+            'email': 'kicia@miau.com',
+            'password': 'miauMIAU123'
+        }
+        data = {
+            'username': 'kicia',
+            'email': 'miau@kicia.com',
+            'password': 'kiciKICI123'
+        }
+
+        self.client.post(url, data, 'json')
+        response = self.client.post(url, data, 'json')
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
