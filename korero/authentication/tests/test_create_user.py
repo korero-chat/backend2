@@ -4,6 +4,7 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from django.urls import reverse
 
+
 class UserCreateTests(APITestCase):
     def test_create_user_with_valid_credentials(self):
         url = reverse('authentication:create')
