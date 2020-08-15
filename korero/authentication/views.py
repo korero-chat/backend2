@@ -20,3 +20,9 @@ class EditUserView(generics.RetrieveUpdateDestroyAPIView):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
+
+
+class ListUsersView(generics.ListAPIView):
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAdminUser]
